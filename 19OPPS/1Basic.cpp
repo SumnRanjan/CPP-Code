@@ -15,7 +15,6 @@ public :
     int nos;
     int *v; 
 
-
     //ctor : Default Ctor : assigns garbage value
     Student()
     {
