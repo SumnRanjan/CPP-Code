@@ -19,6 +19,11 @@ public:
         this->data = data;
         this->next = NULL;
     }
+
+    ~Node()
+    {
+        cout << "Dtor is called : " << this->data << endl;
+    }
 };
 
 // Print LinkList -->
@@ -105,12 +110,12 @@ void InsertAtPosition(Node *&head, Node *&tail, int data, int position)
 {
     int length = CountNode(head);
 
-    if (position <= 1)
+    if (position == 1)
     {
         insetAtHead(head, tail, data);
     }
 
-    else if (position > length)
+    else if (position == length + 1)
     {
         insertAtTail(head, tail, data);
     }
@@ -118,26 +123,104 @@ void InsertAtPosition(Node *&head, Node *&tail, int data, int position)
     else
     {
         // insert at middle of linklist
-        //step 1: create a node
+        // step 1: create a node
         Node *NewNode = new Node(data);
 
-        //step 2: traverse pre // curr to position
-        Node * pre = NULL;
-        Node * curr = head;
+        // step 2: traverse pre // curr to position
+        Node *pre = NULL;
+        Node *curr = head;
 
         while (position != 1)
         {
             pre = curr;
             curr = curr->next;
-            position--;   
+            position--;
         }
 
-        //step 3: attach pre to newnode
-        pre->next = NewNode ;
+        // step 3: attach pre to newnode
+        pre->next = NewNode;
 
-        //step 4: attach new to current node
+        // step 4: attach new to current node
         NewNode->next = curr;
-        
+    }
+}
+
+// delelte node
+void deleteNode(Node *&head, Node *&tail, int position)
+{
+    // empty node
+    if (head == NULL)
+    {
+        cout << "cannot delete because linklist is empty" << endl;
+        return;
+    }
+
+    if(head == tail){
+        //single element
+
+        Node * temp = head;
+        delete temp;
+        head = NULL;
+        tail = NULL;
+    }
+
+    int len = CountNode(head);
+
+    // delete from head
+    if (position == 1)
+    {
+        Node *temp = head;
+
+        head = head->next;
+
+        temp->next = NULL;
+
+        delete temp;
+    }
+
+    // detete from tail
+    else if (position == len)
+    {
+
+        // find prev
+        Node *prev = head;
+        while (prev->next != tail)
+        {
+            prev = prev->next;
+        }
+
+        // prev ko null karo
+        prev->next = NULL;
+
+        // delete tail
+        delete tail;
+
+        // update tail
+        prev = tail;
+    }
+
+    // delete form middle
+    else
+    {
+        // set prev and curr
+        Node *prev = NULL;
+        Node *curr = head;
+
+        while (position != 1)
+        {
+            prev = curr;
+            curr = curr->next;
+            position--;
+        }
+
+        // prev node k next ko curr k next se add kar do
+        prev->next = curr->next;
+
+        // curr k next ko NULL kar do
+        curr->next = NULL;
+
+        // delete curr
+        delete curr;
     }
 }
 
@@ -167,7 +250,10 @@ int main()
 
     PrintLL(head);
 
-    InsertAtPosition(head , tail , 5 , 2);
+    // InsertAtPosition(head , tail , 5 , 2);
+    // PrintLL(head);
+
+    deleteNode(head, tail, 2);
     PrintLL(head);
 
     // creation of node
