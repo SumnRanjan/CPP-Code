@@ -8,40 +8,41 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-class Solution {
+class Solution
+{
 public:
+    ListNode *reverseUsingRecursion(ListNode *prev, ListNode *curr)
+    {
 
-    ListNode* reverseUsingRecursion(ListNode *prev , ListNode*curr){
-
-        // base case 
-        if(curr == NULL){
+        // base case
+        if (curr == NULL)
+        {
             return prev;
         }
-        // first case mai karu ga solve 
-        ListNode * NextNode = curr->next;
+        // first case mai karu ga solve
+        ListNode *NextNode = curr->next;
         curr->next = prev;
         prev = curr;
         curr = NextNode;
 
         // recursion deklega
-        ListNode *recursionkaans = reverseUsingRecursion(prev ,  curr);
+        ListNode *recursionkaans = reverseUsingRecursion(prev, curr);
         return recursionkaans;
-
     }
 
-    ListNode* reverseList(ListNode* head) {
-        ListNode * prev = NULL;
-        ListNode * curr = head;
+    ListNode *reverseList(ListNode *head)
+    {
+        ListNode *prev = NULL;
+        ListNode *curr = head;
 
-        return reverseUsingRecursion(prev , curr);
+        return reverseUsingRecursion(prev, curr);
 
-    //     while(curr != NULL){
-    //         ListNode * Next = curr->next;
-    //         curr->next = prev;
-    //         prev = curr;
-    //         curr = Next;
-    //     }
-    // return prev;
+        //     while(curr != NULL){
+        //         ListNode * Next = curr->next;
+        //         curr->next = prev;
+        //         prev = curr;
+        //         curr = Next;
+        //     }
+        // return prev;
     }
-    
 };
