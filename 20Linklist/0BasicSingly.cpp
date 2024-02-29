@@ -155,10 +155,11 @@ void deleteNode(Node *&head, Node *&tail, int position)
         return;
     }
 
-    if(head == tail){
-        //single element
+    if (head == tail)
+    {
+        // single element
 
-        Node * temp = head;
+        Node *temp = head;
         delete temp;
         head = NULL;
         tail = NULL;
