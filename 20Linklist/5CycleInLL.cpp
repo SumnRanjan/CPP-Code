@@ -24,3 +24,25 @@ public:
         return false;
     }
 };
+
+bool hasCycle2(ListNode *head)
+{
+    ListNode *fast = head;
+    ListNode *slow = head;
+
+    while (fast != NULL)
+    {
+        fast = fast->next;
+        if (fast != NULL){
+            fast = fast->next;
+            slow = slow->next;
+        }
+        
+        //if loop is there
+        if(fast == slow){
+            return true;
+        }
+    }
+    return false;
+    
+}
