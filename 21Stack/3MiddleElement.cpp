@@ -6,6 +6,7 @@ void solve(stack<int> &st , int &pos , int &ans){
     //base case
     if(pos == 1){
         ans = st.top();
+        // st.pop();
         return;
     }
 

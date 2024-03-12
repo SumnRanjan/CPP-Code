@@ -248,14 +248,15 @@ int main()
     insertAtTail(head, tail, 20);
     insertAtTail(head, tail, 30);
     insertAtTail(head, tail, 50);
+    
 
     PrintLL(head);
 
-    // InsertAtPosition(head , tail , 5 , 2);
+    InsertAtPosition(head , tail , 5 , 5);
+    PrintLL(head);
+
+    // deleteNode(head, tail, 2);
     // PrintLL(head);
-
-    deleteNode(head, tail, 2);
-    PrintLL(head);
 
     // creation of node
     //  Node  a;
