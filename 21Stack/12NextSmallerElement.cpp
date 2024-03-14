@@ -7,7 +7,7 @@ using namespace std;
 
 vector<int>nextSmallerElement(int * arr , int size , vector<int>&ans){
     stack<int>st;
-    st.push(-1);
+    st.push(0);
 
     for(int i = size - 1 ; i >= 0 ; i--){
         int curr = arr[i];
@@ -41,12 +41,12 @@ vector<int>prevSmallerElement(int * arr , int size , vector<int>&ans){
 
 int main(){
     
-    int arr[] = {8,4,6,2,3};
-    int size = 5;
+    int arr[] = {10,1,1,6};
+    int size = 4;
     vector<int>ans(size);
 
-    // ans = nextSmallerElement(arr , size , ans);
-    ans = prevSmallerElement(arr , size , ans);
+    ans = nextSmallerElement(arr , size , ans);
+    // ans = prevSmallerElement(arr , size , ans);
 
     for(auto i : ans){
         cout<<i<<" ";
