@@ -158,7 +158,6 @@ void deleteNode(Node *&head, Node *&tail, int position)
     if (head == tail)
     {
         // single element
-
         Node *temp = head;
         delete temp;
         head = NULL;
