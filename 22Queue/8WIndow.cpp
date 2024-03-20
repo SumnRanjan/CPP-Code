@@ -25,7 +25,7 @@ void PintFirstNeg(int *arr, int n, int k = 3)
     {
         if (dq.empty())
             cout << "0" << endl;
-        else
+        else 
         {
             cout << arr[dq.front()] << " ";
         }
