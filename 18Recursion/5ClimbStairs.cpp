@@ -18,7 +18,7 @@ int climbstairs(int n)
 
 int main()
 {
-    cout << climbstairs(5) << endl;
+    cout << climbstairs(2) << endl;
 
     return 0;
 }
