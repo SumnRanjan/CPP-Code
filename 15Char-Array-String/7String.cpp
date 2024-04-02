@@ -104,7 +104,7 @@ int main()
     // {
     //     cout<<"Index at "<< i << "value "<<name[i]<<endl;
     //     i++;
-    // }
+    // }  
 
     return 0;
 }
