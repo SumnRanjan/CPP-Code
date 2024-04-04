@@ -124,7 +124,7 @@ Node *constructTreeFromPostAndInorderTraversal(map<int, int> &valueToIndexMap, i
 
     return root; 
 }
-
+    
 int main()
 {
     int inorder[] = {10, 8, 6, 2, 4, 12};
@@ -139,7 +139,6 @@ int main()
     Node *root = constructTreeFromPreAndInorderTraversal(valueToIndexMap,preorder, inorder, preOrderIndex, inorderStart, inorderEnd, size);
     cout << "Printing the entire tree: " << endl;
     levelOrderTraversal(root);
-
     // int inorder[] = {8, 14, 6, 2, 10, 4};
     // int postorder[] = {8, 6, 14, 4, 10, 2};
     // int size = 6;
