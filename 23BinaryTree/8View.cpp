@@ -277,13 +277,11 @@ void boundaryTraversal(Node *root)
     {
         return;
     }
-    printLeftBoundary(root);
-    printLeafBoundary(root);
-    if (root->right != NULL)
-        printRightBoundary(root->right);
-
-    else
-        printRightBoundary(root->left);
+    cout<<root->data<<" ";
+    printLeftBoundary(root->left);
+    printLeafBoundary(root->left);
+    printLeafBoundary(root->right);
+    printRightBoundary(root->right);
 }
 
 int main()
