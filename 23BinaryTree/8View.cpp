@@ -231,7 +231,7 @@ void printLeftBoundary(Node *root)
     }
 }
 
-void printLeafBoundary(Node *root)
+void printLeafBoundary(Node *root
 {
     if (root == NULL)
     {
