@@ -184,6 +184,66 @@ bool searchInBTS(Node *root, int target)
     return rightans || leftans;
 }
 
+Node *deleteFromBST(Node *root, int target)
+{
+
+    if (root == NULL)
+        return NULL;
+
+    if (root->data == target)
+    {
+        // ab delete karni hai -- 4case
+
+        // 1 case  both null
+        if (root->left == NULL && root->right == NULL)
+        {
+            delete root;
+            return NULL;
+        }
+
+        // 2nd case -- left not null hai and right null hai
+        else if (root->left != NULL && root->right == NULL)
+        {
+            Node *childSubtree = root->left;
+            delete root;
+            return childSubtree;
+        }
+
+        // 3nd case -- left  null hai and right not null hai
+        else if (root->left == NULL && root->right != NULL)
+        {
+            Node *childSubtree = root->right;
+            delete root;
+            return childSubtree;
+        }
+
+        // 4th case -- left not  null and right not null
+        else
+        {
+            // left ki max value lao
+            Node *maxi = maxValue(root->left);
+            // replace
+            root->data = maxi->data;
+
+            // delete actual maxi
+            root->left = deleteFromBST(root->left, maxi->data);
+            return root;
+        }
+    }
+
+    else if (root->data > target)
+    {
+        root->left = deleteFromBST(root->left, target);
+    }
+
+    else
+    {
+        root->right = deleteFromBST(root->right, target);
+    }
+
+    return root;
+}
+
 int main()
 {
     Node *root = NULL;
@@ -222,27 +282,41 @@ int main()
     //     cout << "Max Value is :" << maxvalue->data << endl;
     // }
 
+    // 700. Search in a Binary Search Tree
+    // int t;
+    // cout << "Enter the target : ";
+    // cin >> t;
 
-    //700. Search in a Binary Search Tree
-    int t;
-    cout << "Enter the target : ";
-    cin >> t;
+    // while (t != -1)
+    // {
+    //     bool ans = searchInBTS(root, t);
 
-    while (t != -1)
+    //     if (ans == true)
+    //     {
+    //         cout << "Found" << endl;
+    //     }
+    //     else
+    //     {
+    //         cout << "Not Found" << endl;
+    //     }
+
+    //     cout << "Enter the target : ";
+    //     cin >> t;
+    // }
+
+
+
+    int target;
+    cout << "Enter the value of target : " << endl;
+    cin >> target;
+
+    while (target != -1)
     {
-        bool ans = searchInBTS(root, t);
-
-        if (ans == true)
-        {
-            cout << "Found" << endl;
-        }
-        else
-        {
-            cout << "Not Found" << endl;
-        }
-
-        cout << "Enter the target : ";
-        cin >> t;
+        root = deleteFromBST(root, target);
+        cout << endl<< "Print Level order : " << endl;
+        levelOrder(root);
+        cout << "Enter the value of target : " << endl;
+        cin >> target;
     }
 
     return 0;
