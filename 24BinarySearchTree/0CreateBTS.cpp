@@ -244,11 +244,28 @@ Node *deleteFromBST(Node *root, int target)
     return root;
 }
 
+// create BST form inoredre
+
+Node *bstFromInorder(int inorder[], int s, int e)
+{
+    if (s > e)
+        return NULL;
+
+    int mid = (s + e) / 2;
+    int element = inorder[mid];
+    Node *root = new Node(element);
+
+    root->left = bstFromInorder(inorder, s, mid - 1);
+    root->right = bstFromInorder(inorder, mid + 1, e);
+
+    return root;
+}
+
 int main()
 {
-    Node *root = NULL;
-    createBST(root);
-    levelOrder(root);
+    // Node *root = NULL;
+    // createBST(root);
+    // levelOrder(root);
 
     // cout << endl
     //      << "Inorder : ";
@@ -304,20 +321,26 @@ int main()
     //     cin >> t;
     // }
 
+    // int target;
+    // cout << "Enter the value of target : " << endl;
+    // cin >> target;
 
+    // while (target != -1)
+    // {
+    //     root = deleteFromBST(root, target);
+    //     cout << endl
+    //          << "Print Level order : " << endl;
+    //     levelOrder(root);
+    //     cout << "Enter the value of target : " << endl;
+    //     cin >> target;
+    // }
 
-    int target;
-    cout << "Enter the value of target : " << endl;
-    cin >> target;
-
-    while (target != -1)
-    {
-        root = deleteFromBST(root, target);
-        cout << endl<< "Print Level order : " << endl;
-        levelOrder(root);
-        cout << "Enter the value of target : " << endl;
-        cin >> target;
-    }
+    int inorder[] = {10,20,30,40,50,60,70};
+    int size = 7;
+    int s = 0;
+    int e = size - 1;
+    Node* root = bstFromInorder(inorder , s , e);
+    levelOrder(root);
 
     return 0;
 }
