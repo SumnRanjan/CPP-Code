@@ -5,22 +5,22 @@
 #include<stack>
 using namespace std;
 
-vector<int>nextSmallerElement(int * arr , int size , vector<int>&ans){
-    stack<int>st;
-    st.push(0);
+    vector<int>nextSmallerElement(int * arr , int size , vector<int>&ans){
+        stack<int>st;
+        st.push(0);
 
-    for(int i = size - 1 ; i >= 0 ; i--){
-        int curr = arr[i];
-        while(st.top() >= curr){
-            st.pop();
+        for(int i = size - 1 ; i >= 0 ; i--){
+            int curr = arr[i];
+            while(st.top() >= curr){
+                st.pop();
+            }
+
+            ans[i] = st.top();   
+
+            st.push(curr);
         }
-
-        ans[i] = st.top();   
-
-        st.push(curr);
-    }
-    return ans;
-}   
+        return ans;
+    }   
 
 vector<int>prevSmallerElement(int * arr , int size , vector<int>&ans){
     stack<int>st;

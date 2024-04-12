@@ -261,6 +261,38 @@ Node *bstFromInorder(int inorder[], int s, int e)
     return root;
 }
 
+//convert Bst into a sorted Doubly Sorted LL-
+
+void convertBSTtoDLL(Node * root , Node * & head){
+    if(root == nullptr) {
+        return;
+    }
+
+    //RNL
+    convertBSTtoDLL(root->right , head);
+
+    //N
+    root->right = head;
+    if(head != NULL){
+        head->left = root;
+    }
+    head = root;
+
+    //l
+    convertBSTtoDLL(root->left , head);
+}
+
+void printLL(Node * head){
+    Node * temp = head;
+    cout<<"printing the entire LL :";
+
+    while(temp != NULL){
+        cout<<temp->data <<"<->";
+        temp = temp->right;
+    }
+    cout<<endl;
+}
+
 int main()
 {
     // Node *root = NULL;
@@ -341,6 +373,10 @@ int main()
     int e = size - 1;
     Node* root = bstFromInorder(inorder , s , e);
     levelOrder(root);
+
+    Node * head = NULL;
+    convertBSTtoDLL(root , head);
+    printLL(head);
 
     return 0;
 }
