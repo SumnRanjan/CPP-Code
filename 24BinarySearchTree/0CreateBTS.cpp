@@ -261,36 +261,67 @@ Node *bstFromInorder(int inorder[], int s, int e)
     return root;
 }
 
-//convert Bst into a sorted Doubly Sorted LL-
+// convert Bst into a sorted Doubly Sorted LL-
 
-void convertBSTtoDLL(Node * root , Node * & head){
-    if(root == nullptr) {
+void convertBSTtoDLL(Node *root, Node *&head)
+{
+    if (root == nullptr)
+    {
         return;
     }
 
-    //RNL
-    convertBSTtoDLL(root->right , head);
+    // RNL
+    convertBSTtoDLL(root->right, head);
 
-    //N
+    // N
     root->right = head;
-    if(head != NULL){
+    if (head != NULL)
+    {
         head->left = root;
     }
     head = root;
 
-    //l
-    convertBSTtoDLL(root->left , head);
+    // l
+    convertBSTtoDLL(root->left, head);
 }
 
-void printLL(Node * head){
-    Node * temp = head;
-    cout<<"printing the entire LL :";
+void printLL(Node *head)
+{
+    Node *temp = head;
+    cout << "printing the entire LL :";
 
-    while(temp != NULL){
-        cout<<temp->data <<"<->";
+    while (temp != NULL)
+    {
+        cout << temp->data << "<->";
         temp = temp->right;
     }
-    cout<<endl;
+    cout << endl;
+}
+
+// Convert DSL To BST
+
+Node *convertDLLtoBST(Node * &head , int n) // pass head by reference
+{
+
+    if (head == nullptr || n <= 0)
+    {
+        return nullptr;
+    }
+
+    // LNR
+
+    Node *leftsubtree = convertDLLtoBST(head, n / 2);
+
+    // N
+    Node *root = head;
+    root->left = leftsubtree;
+    // head update
+    head = head->right;
+
+    // R
+    Node *rightsubtree = convertDLLtoBST(head, n - n / 2 - 1);
+    root->right = rightsubtree;
+    return root;
 }
 
 int main()
@@ -367,16 +398,32 @@ int main()
     //     cin >> target;
     // }
 
-    int inorder[] = {10,20,30,40,50,60,70};
-    int size = 7;
-    int s = 0;
-    int e = size - 1;
-    Node* root = bstFromInorder(inorder , s , e);
+    // int inorder[] = {10, 20, 30, 40, 50, 60, 70};
+    // int size = 7;
+    // int s = 0;
+    // int e = size - 1;
+    // Node *root = bstFromInorder(inorder, s, e);
+    // levelOrder(root);
+
+    // Node *head = NULL;
+    // convertBSTtoDLL(root, head);
+    // printLL(head);
+
+    Node * first = new Node(10);
+    Node * second = new Node(20);
+    Node * third = new Node(30);
+
+    first->right = second;
+    second->left = first;
+    second->right = third;
+    third->left = second;
+
+    Node * head = first;
+
+    Node * root = convertDLLtoBST(head , 3);
     levelOrder(root);
 
-    Node * head = NULL;
-    convertBSTtoDLL(root , head);
-    printLL(head);
+
 
     return 0;
 }
