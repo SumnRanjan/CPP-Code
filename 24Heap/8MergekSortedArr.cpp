@@ -19,7 +19,6 @@ public:
     bool operator()(Info * a , Info * b){
         return a->data > b->data;
     }
-
 };
 
 
