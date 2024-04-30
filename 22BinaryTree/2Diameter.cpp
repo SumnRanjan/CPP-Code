@@ -24,3 +24,28 @@ public:
         return diameter;
     }
 };
+
+//2nd way
+
+class Solution {
+public:
+    int D = 0;
+    int height(TreeNode* root) {
+        if (root == NULL)
+            return 0;
+
+        int left = height(root->left);
+        int right = height(root->right);
+
+        int currD = left + right;
+        D = max(D , currD);
+
+        int height = max(left, right) + 1;
+
+        return height;
+    }
+    int diameterOfBinaryTree(TreeNode* root) {
+        height(root);
+        return D;
+    }
+};

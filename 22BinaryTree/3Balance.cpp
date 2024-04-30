@@ -32,3 +32,29 @@ public:
             return false;
     }
 };
+
+//2nd way
+
+class Solution {
+public:
+    int height(TreeNode* root , bool &isBal) {
+        if(!root) return 0;
+
+        int left = height(root->left , isBal);
+        int right = height(root->right , isBal);
+
+        //check for currenet node is balance
+        if(isBal && abs(left - right) > 1){
+            isBal = false;
+        }
+
+        return max(left , right) + 1;
+    }
+
+
+    bool isBalanced(TreeNode* root) {
+        bool  isBalanced = true;
+        height(root , isBalanced);
+        return isBalanced;
+    }
+};
