@@ -18,15 +18,6 @@ public:
             return rightans;
         }
 
-        // // 3 case p left mai h and q right
-        // if (p->val < root->val && q->val > root->val) {
-        //     return root;
-        // }
-        // // 4 case q left mai h and p right
-        // if (p->val > root->val && q->val < root->val) {
-        //     return root;
-        // }
-
         return root;
     }
 };
