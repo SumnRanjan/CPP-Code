@@ -231,7 +231,7 @@ void printLeftBoundary(Node *root)
     }
 }
 
-void printLeafBoundary(Node *root
+void printLeafBoundary(Node *root)
 {
     if (root == NULL)
     {
@@ -264,7 +264,7 @@ void printRightBoundary(Node *root)
         printRightBoundary(root->right);
     }
 
-    else
+    else    
     {
         printRightBoundary(root->left);
     }
@@ -293,6 +293,7 @@ int main()
     // vector<int> leftView;
     // printLeftView(root , 0 , leftView );
 
++
     // cout<<"Printing left view "<<endl;
     // for(int i = 0 ; i< leftView.size() ; i++){
     //     cout<<leftView[i]<<" ";
